@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    {% block content %}
+
+        <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Image</th>
+                            <th>Nombre de plats</th>
+                            <th>Details</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for category in categories %}
+                            <tr>
+                                <td>{{ category.name }}</td>
+                                <td>{{ category.image }}</td>
+                                <td>{{ count[category.id] }}</td>
+                                <td><a href="{{ path('front_dishes_category', {'id': category.id}) }}">Details</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    {% endblock %}
+
+{% endblock %}

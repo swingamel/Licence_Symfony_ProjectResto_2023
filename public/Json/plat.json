@@ -1,0 +1,125 @@
+{
+  "desserts": [
+    {
+      "name": "Apple Pie",
+      "calories": "This is a text",
+      "description": "This is a text",
+      "image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      "user_id": 1,
+      "sticky": true,
+      "price": 1.99,
+      "allergens": [
+        "gluten",
+        "nuts"
+      ]
+    },
+    {
+      "name": "Banana Split",
+      "calories": "This is a text",
+      "description": "This is a text",
+      "image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      "sticky": true,
+      "user_id": 1,
+      "price": 1.99,
+      "allergens": [
+        "gluten",
+        "nuts"
+      ]
+    },
+    {
+      "name": "Chocolate Cake",
+      "calories": "This is a text",
+      "description": "This is a text",
+      "image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      "sticky": true,
+      "user_id": 1,
+      "price": 1.99,
+      "allergens": [
+        "gluten",
+        "nuts"
+      ]
+    }
+  ],
+  "plats": [
+    {
+      "name": "Poulet",
+      "calories": "This is a text",
+      "description": "This is a text",
+      "image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      "sticky": true,
+      "user_id": 1,
+      "price": 1.99,
+      "allergens": [
+        "gluten",
+        "nuts"
+      ]
+    },
+    {
+      "name": "Poisson",
+      "calories": "This is a text",
+      "description": "This is a text",
+      "image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      "sticky": true,
+      "user_id": 1,
+      "price": 1.99,
+      "allergens": [
+        "gluten",
+        "nuts"
+      ]
+    },
+    {
+      "name": "Boeuf",
+      "calories": "This is a text",
+      "description": "This is a text",
+      "image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      "sticky": true,
+      "user_id": 1,
+      "price": 1.99,
+      "allergens": [
+        "gluten",
+        "nuts"
+      ]
+    }
+  ],
+  "entrees": [
+    {
+      "name": "Salade",
+      "calories": "This is a text",
+      "description": "This is a text",
+      "image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      "sticky": true,
+      "user_id": 1,
+      "price": 1.99,
+      "allergens": [
+        "gluten",
+        "nuts"
+      ]
+    },
+    {
+      "name": "Soupe",
+      "calories": "This is a text",
+      "description": "This is a text",
+      "image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      "sticky": true,
+      "user_id": 1,
+      "price": 1.99,
+      "allergens": [
+        "gluten",
+        "nuts"
+      ]
+    },
+    {
+      "name": "Pates",
+      "calories": "This is a text",
+      "description": "This is a text",
+      "image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      "sticky": true,
+      "user_id": 1,
+      "price": 1.99,
+      "allergens": [
+        "gluten",
+        "nuts"
+      ]
+    }
+  ]
+}

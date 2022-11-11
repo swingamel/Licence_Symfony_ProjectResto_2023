@@ -1,0 +1,13 @@
+{
+  "desserts": [
+    {
+      "name": "Fraisier",
+      "calories": 452,
+      "description": "fraises, crème pâtissière, génoise, meringue",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Donut.jpg/800px-Donut.jpg",
+      "price": 1.99,
+      "user_id": 1,
+      "allergens": "fraises"
+    }
+  ]
+}

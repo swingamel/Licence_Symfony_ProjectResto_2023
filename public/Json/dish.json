@@ -1,0 +1,64 @@
+{
+  "desserts": [
+    {
+      "name": "Donut",
+      "calories": 452,
+      "description": "A fried cake of yeast-leavened dough",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Donut.jpg/800px-Donut.jpg",
+      "price": 1.99,
+      "user_id": 1,
+      "allergens": "eggs"
+    },
+    {
+      "name": "Cookie",
+      "calories": 237,
+      "description": "A small cake",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cookies_in_a_jar.jpg/800px-Cookies_in_a_jar.jpg",
+      "price": 0.99,
+      "user_id": 1,
+      "allergens": "eggs"
+    },
+    {
+      "name": "Ice Cream",
+      "calories": 262,
+      "description": "A frozen dessert usually made from dairy products, such as milk and cream, and often combined with fruits or other ingredients and flavours.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Two-scoops-of-ice-cream.jpg/800px-Two-scoops-of-ice-cream.jpg",
+      "price": 1.99,
+      "user_id": 1,
+      "allergens": "milk"
+    },
+    {
+      "name": "Cake",
+      "calories": 356,
+      "description": "A sweet dessert of flour, sugar, and other ingredients, that is usually baked.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Cake_-_Dresden_-_20160428.jpg/800px-Cake_-_Dresden_-_20160428.jpg",
+      "price": 2.99,
+      "user_id": 1,
+      "allergens": "eggs"
+    },
+    {
+      "name": "Pie",
+      "calories": 231,
+      "description": "A baked dish which is usually made of a pastry dough casing that covers or completely contains a filling of various sweet or savoury ingredients.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Apple_Pie.jpg/800px-Apple_Pie.jpg",
+      "price": 1.99,
+      "user_id": 1,
+      "allergens": "eggs"
+    }
+  ],
+  "plats": [
+    {
+      "name": "Poulet",
+      "calories": "This is a text",
+      "description": "This is a text",
+      "image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      "sticky": true,
+      "user_id": 1,
+      "price": 1.99,
+      "allergens": [
+        "gluten",
+        "nuts"
+      ]
+    }
+  ]
+}
