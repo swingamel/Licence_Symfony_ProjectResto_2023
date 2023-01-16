@@ -1,0 +1,9 @@
+{% include 'admin/admin.html.twig' %}
+
+{% block body %}
+    {% block content %}
+        <h1>Modifier une catégorie</h1>
+
+        {{ include('category/_form.html.twig', {'button_label': 'Modifier une catégorie !'}) }}
+    {% endblock %}
+{% endblock %}

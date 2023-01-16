@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categories{% endblock %}
+{% block title %}Détail plats{% endblock %}
 
 {% block body %}
     {% block content %}
@@ -12,18 +12,20 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Calories</th>
                 <th scope="col">Prix</th>
+                <th scope="col">Image</th>
                 <th scope="col">Description</th>
-                <th scope="col">Allergen</th>
+                <th scope="col">Gluant ?</th>
             </tr>
             </thead>
             <tbody>
             {% for plat in category.plats %}
                 <tr>
                     <td>{{ plat.name }}</td>
-                    <td>{{ plat.calories }}</td>
-                    <td>{{ plat.price }}€</td>
+                    <td>{{ plat.calories }} kcal</td>
+                    <td>{{ plat.price }} €</td>
+                    <td><img src="{{ plat.Image }}" width="100px"></td>
                     <td>{{ plat.description }}</td>
-                    <td>{% for allergen in plat.allergens %} {{ allergen.name }} {% endfor %}</td>
+                    <td>{{ plat.Sticky ? 'Oui' : 'Non' }}</td>
                 </tr>
             {% endfor %}
             </tbody>

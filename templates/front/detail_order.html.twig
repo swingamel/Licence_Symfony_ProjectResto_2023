@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ClientOrder{% endblock %}
+
+{% block body %}
+    <h1>ClientOrder</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ client_order.id }}</td>
+        </tr>
+        <tr>
+            <th>DateheureCommande</th>
+            <td>{{ client_order.dateheureCommande ? client_order.dateheureCommande|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>PrixCommmande</th>
+            <td>{{ client_order.prixCommmande }}</td>
+        </tr>
+        <tr>
+            <th>StatutCommande</th>
+            <td>{{ client_order.statutCommande }}</td>
+        </tr>
+        <tr>
+            <th>Client</th>
+            <td>{{ client_order.Client }}</td>
+        </tr>
+        <tr>
+            <th>Plats</th>
+            <td>
+                {% for plat in client_order.plats %}
+                    {{ plat.Name }} - {{ plat.Price }}€ <br>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <th>Serveur</th>
+            <td>{{ client_order.Serveur }}</td>
+        </tr>
+        <tr>
+            <th>Total de la commande</th>
+            <td>{{ total }}€</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

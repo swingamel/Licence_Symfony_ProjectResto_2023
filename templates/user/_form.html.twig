@@ -1,0 +1,55 @@
+<div class="form-group">
+    {{ form_start(form) }}
+    <table class="table" style="width: 50%;position:relative; left:400px">
+        <thead>
+        <tr>
+            <td>
+                {{ form_label(form.Username, 'Username de l\'utilisateur :' ) }}
+                {{ form_widget(form.Username, {'attr':{'class':'form-control', 'placeholder' : 'Entrez l\'username de l\'utilisateur'}}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.Email, 'Email de l\'utilisateur :' ) }}
+                {{ form_widget(form.Email, {'attr':{'class':'form-control', 'placeholder' : 'Entrez l\'email de l\'utilisateur'}}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.Firstame, 'Prénom de l\'utilisateur :' ) }}
+                {{ form_widget(form.Firstame, {'attr':{'class':'form-control', 'placeholder' : 'Entrez le prénom de l\'utilisateur'}}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.Lastname, 'Nom de l\'utilisateur :' ) }}
+                {{ form_widget(form.Lastname, {'attr':{'class':'form-control', 'placeholder' : 'Entrez le nom de l\'utilisateur'}}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.JobTitle, 'Intitulé du poste de l\'utilisateur :' ) }}
+                {{ form_widget(form.JobTitle, {'attr':{'class':'form-control', 'placeholder' : 'Entrez le poste de l\'utilisateur'}}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.Enabled, 'Actif ?' ) }}
+                {{ form_widget(form.Enabled, {'attr':{'class':'form-control' }}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.password, 'Mot de passe :' ) }}
+                {{ form_widget(form.password, {'attr':{'class':'form-control', 'placeholder' : 'Entrez le mot de passe de l\'utilisateur'}}) }}
+            </td>
+        </thead>
+    </table>
+    <div style="text-align: center"><button class="btn btn-success">
+            {{ button_label|default('Ajouter un utilisateur !') }}
+        </button>
+        <a type="button" class="btn btn-danger" href="{{ path('app_user_index') }}">Annuler</a>
+    </div>
+</div>
+<br>
+{{ form_end(form) }}

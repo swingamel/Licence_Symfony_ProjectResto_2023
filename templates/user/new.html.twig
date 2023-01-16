@@ -1,0 +1,9 @@
+{% include 'admin/admin.html.twig' %}
+
+{% block body %}
+    {% block content %}
+    <h1>Ajouter un User</h1>
+
+    {{ include('user/_form.html.twig') }}
+    {% endblock %}
+{% endblock %}

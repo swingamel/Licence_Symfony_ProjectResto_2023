@@ -1,0 +1,9 @@
+{% include 'admin/admin.html.twig' %}
+
+{% block body %}
+    {% block content %}
+    <h1>Modifier un utilisateur</h1>
+
+    {{ include('user/_form.html.twig', {'button_label': 'Modifier un utilisiteur !'}) }}
+    {% endblock %}
+{% endblock %}

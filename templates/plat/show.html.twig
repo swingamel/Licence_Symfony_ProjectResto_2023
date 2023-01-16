@@ -1,0 +1,66 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Plat{% endblock %}
+
+{% block body %}
+    {% block content %}
+        <h1>Détail du plat n°{{ plat.id }}</h1>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Id du plat</th>
+                <td>{{ plat.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom du plat</th>
+                <td>{{ plat.Name }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de calories</th>
+                <td>{{ plat.Calories }} kcal</td>
+            </tr>
+            <tr>
+                <th>Prix du plat</th>
+                <td>{{ plat.Price }} €</td>
+            </tr>
+            <tr>
+                <th>Image du plat</th>
+                <td><img src="{{ plat.Image }}" width="100px"></td>
+            </tr>
+            <tr>
+                <th>Description du plat</th>
+                <td>{{ plat.Description }}</td>
+            </tr>
+            <tr>
+                <th>Gluant ?</th>
+                <td>{{ plat.Sticky ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Categories</th>
+                <td>
+                    {% for category in plat.Category %}
+                        {{ category.Name }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>User</th>
+                <td>
+                    {{ plat.User }}
+                </td>
+            </tr>
+            <tr>
+                <th>Allergens</th>
+                <td>
+                    {% for allergen in plat.Allergens %}
+                        {{ allergen.Name }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+        <a href="{{ path('app_plat_index') }}" class="btn btn-info">Retour</a>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,29 @@
+<div class="form-group">
+{{ form_start(form) }}
+    <table class="table" style="width: 50%;position:relative; left:400px">
+        <thead>
+        <tr>
+            <td>
+                {{ form_label(form.Name, 'Nom de la catégorie :' ) }}
+                {{ form_widget(form.Name, {'attr':{'class':'form-control', 'placeholder' : 'Entrez le nom de la catégorie' }}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.Image, 'Image de la catégorie :' ) }}
+                <br>
+                {{ form_widget(form.Image ) }}
+            </td>
+        </tr>
+        </thead>
+    </table>
+    <div style="text-align: center"><button class="btn btn-success">
+            {{ button_label|default('Ajouter une catégorie !') }}
+        </button>
+        <a type="button" class="btn btn-danger" href="{{ path('app_category_index') }}">
+            Annuler
+        </a>
+    </div>
+</div>
+<br>
+{{ form_end(form) }}

@@ -16,15 +16,15 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CategoryRepository extends ServiceEntityRepository
 {
-
     public function countPlats($id)
     {
         $entityManager = $this->getEntityManager();
         $query = $entityManager->createQuery(
-            'SELECT COUNT(p.id) FROM App\Entity\Plat p WHERE p.CategoryId = :id'
+            'SELECT COUNT(p.id) FROM App\Entity\Plat p WHERE p.Category = :id'
         )->setParameter('id', $id);
         return $query->getSingleScalarResult();
     }
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Category::class);

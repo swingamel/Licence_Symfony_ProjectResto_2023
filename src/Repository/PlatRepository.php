@@ -16,6 +16,20 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PlatRepository extends ServiceEntityRepository
 {
+    public function findStickies($category, $limit)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb
+            ->where('p.Category = :category')
+            ->andWhere('p.Sticky = true')
+            ->setParameter('category', $category)
+            ->setMaxResults($limit)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Plat::class);

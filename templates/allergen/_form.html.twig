@@ -1,0 +1,28 @@
+<div class="form-group">
+    {{ form_start(form) }}
+    <table class="table" style="width: 50%;position:relative; left:400px">
+        <thead>
+        <tr>
+            <td>
+                {{ form_label(form.Name, 'Nom de l\'allergen :' ) }}
+                {{ form_widget(form.Name, {'attr':{'class':'form-control', 'placeholder' : 'Entrez le nom de l\'allergen' }}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.plats, 'Les plats :' ) }}
+                {{ form_widget(form.plats, {'attr':{'class':'form-control', 'placeholder' : 'Selectionnez les plats' }}) }}
+            </td>
+        </tr>
+        </thead>
+    </table>
+    <div style="text-align: center"><button class="btn btn-success">
+            {{ button_label|default('Ajouter un allergen !') }}
+        </button>
+        <a type="button" class="btn btn-danger" href="{{ path('app_allergen_index') }}">
+            Annuler
+        </a>
+    </div>
+</div>
+<br>
+{{ form_end(form) }}

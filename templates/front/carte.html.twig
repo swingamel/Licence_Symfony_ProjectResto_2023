@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}Plats{% endblock %}
 
 {% block body %}
     {% block content %}
@@ -12,8 +12,7 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Nom</th>
-                            <th>Image</th>
+                            <th>Catégorie</th>
                             <th>Nombre de plats</th>
                             <th>Details</th>
                         </tr>
@@ -22,7 +21,6 @@
                         {% for category in categories %}
                             <tr>
                                 <td>{{ category.name }}</td>
-                                <td>{{ category.image }}</td>
                                 <td>{{ count[category.id] }}</td>
                                 <td><a href="{{ path('front_dishes_category', {'id': category.id}) }}">Details</a></td>
                             </tr>
@@ -32,8 +30,5 @@
                 </div>
             </div>
         </div>
-
-
     {% endblock %}
-
 {% endblock %}

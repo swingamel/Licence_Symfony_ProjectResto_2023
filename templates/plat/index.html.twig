@@ -1,0 +1,67 @@
+{% include 'admin/admin.html.twig' %}
+
+{% block body %}
+    {% block content %}
+        <h1>Liste des plats</h1>
+
+        <table class="table table-hover">
+            <thead>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('edit') %}
+                <div class="alert alert-warning">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('delete') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <tr>
+                <th>Nom</th>
+                <th>Calories</th>
+                <th>Prix</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Gluant ?</th>
+                <th colspan="3" rowspan="3">Choix</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for plat in plats %}
+                <tr>
+                    <td>{{ plat.Name }}</td>
+                    <td>{{ plat.Calories }} kcal</td>
+                    <td>{{ plat.Price }} €</td>
+                    <td><img src="{{ plat.Image }}" width="100px"></td>
+                    <td>{{ plat.Description }}</td>
+                    <td>{{ plat.Sticky ? 'Oui' : 'Non' }}</td>
+                    <td>
+                        <a href="{{ path('app_plat_edit', {'id': plat.id}) }}" class="btn btn-warning">Modifier</a>
+                    </td>
+                    <td>
+                        <form method="post" action="{{ path('app_plat_delete', {'id': plat.id}) }}"
+                              onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ plat.id) }}">
+                            <button class="btn btn-danger">
+                                Supprimer
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        {#<a href="{{ path('app_plat_show', {'id': plat.id}) }}" class="btn btn-info">Détail</a>#}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}
+{% endblock %}

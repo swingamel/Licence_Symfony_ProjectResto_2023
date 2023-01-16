@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prise en charge de la commande{% endblock %}
+
+{% block body %}
+    {% block content %}
+    <h1>Prise en charge commande</h1>
+    <div class="form-group">
+        {{ form_start(form) }}
+        <table class="table" style="width: 50%;position:relative; left:400px">
+            <thead>
+            <tr>
+                <td>
+                    {{ form_label(form.dateheureCommande, 'Date et heure de la prise en charge de la commande') }}
+                    {{ form_widget(form.dateheureCommande, {'attr': {'id': 'dateheureCommande'}}) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.prixCommmande, 'Prix de la commande') }}
+                    {{ form_widget(form.prixCommmande) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.statutCommande, 'Statut de la commande') }}
+                    {{ form_widget(form.statutCommande) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.tableCommande, 'Table de la commande') }}
+                    {{ form_widget(form.tableCommande) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.Plats, 'Plats de la commande') }}
+                    {{ form_widget(form.Plats) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.Serveur, 'Serveur de la commande') }}
+                    {{ form_widget(form.Serveur) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.Client, 'Client de la commande') }}
+                    {{ form_widget(form.Client) }}
+                </td>
+            </tr>
+            </thead>
+        </table>
+        <div style="text-align: center">
+            <button class="btn btn-success">
+                {{ button_label|default('Prise en charge de la commande !') }}
+            </button>
+            <a type="button" class="btn btn-danger" href="{{ path('homepage') }}">
+                Annuler
+            </a>
+        </div>
+    </div>
+    <br>
+    {{ form_end(form) }}
+        {% block javascripts %}
+            <script type="text/javascript">
+                $(function () {
+                    $('#dateheureCommande').datetimepicker();
+                });
+            </script>
+        {% endblock %}
+    {% endblock %}
+{% endblock %}

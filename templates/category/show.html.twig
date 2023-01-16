@@ -1,0 +1,26 @@
+{% include 'admin/admin.html.twig' %}
+
+{% block body %}
+    {% block content %}
+    <h1>Détail de la catégorie {{ category.id }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id de la catégorie</th>
+                <td>{{ category.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom de la catégorie</th>
+                <td>{{ category.Name }}</td>
+            </tr>
+            <tr>
+                <th>Image de la catégorie</th>
+                <td><img src="{{ category.Image }}" width="100px"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_category_index') }}" class="btn btn-info">Retour</a>
+    {% endblock %}
+{% endblock %}

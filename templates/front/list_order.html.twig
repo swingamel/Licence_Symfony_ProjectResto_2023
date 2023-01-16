@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ClientOrder index{% endblock %}
+
+{% block body %}
+    <h1>ClientOrder index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>DateheureCommande</th>
+            <th>PrixCommmande</th>
+            <th>StatutCommande</th>
+            <th>Détail</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for client_order in client_orders %}
+            <tr>
+                <td>{{ client_order.id }}</td>
+                <td>{{ client_order.dateheureCommande ? client_order.dateheureCommande|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ client_order.prixCommmande|number_format(2, ',', ' ') }} €</td>
+                <td>{{ client_order.statutCommande }}</td>
+                {#détail des plats#}
+
+                <td>
+                    <a href="{{ path('app_order_show', {'id': client_order.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

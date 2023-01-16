@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\AllergenRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AllergenRepository::class)]
+#[ApiResource]
 class Allergen
 {
     #[ORM\Id]
@@ -18,7 +20,7 @@ class Allergen
     #[ORM\Column(length: 255)]
     private ?string $Name = null;
 
-    #[ORM\OneToMany(mappedBy: 'allergen', targetEntity: Plat::class)]
+    #[ORM\ManyToMany(targetEntity: Plat::class, mappedBy: 'allergens')]
     private Collection $plats;
 
     public function __construct()
@@ -55,7 +57,7 @@ class Allergen
     {
         if (!$this->plats->contains($plat)) {
             $this->plats->add($plat);
-            $plat->setAllergen($this);
+            $plat->addAllergen($this);
         }
 
         return $this;
@@ -64,12 +66,14 @@ class Allergen
     public function removePlat(Plat $plat): self
     {
         if ($this->plats->removeElement($plat)) {
-            // set the owning side to null (unless already changed)
-            if ($plat->getAllergen() === $this) {
-                $plat->setAllergen(null);
-            }
+            $plat->removeAllergen($this);
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->Name;
     }
 }

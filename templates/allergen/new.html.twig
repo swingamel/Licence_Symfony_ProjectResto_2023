@@ -1,0 +1,9 @@
+{% include 'admin/admin.html.twig' %}
+
+{% block body %}
+    {% block content %}
+    <h1>Ajouter un Allergen</h1>
+
+    {{ include('allergen/_form.html.twig') }}
+    {% endblock %}
+{% endblock %}

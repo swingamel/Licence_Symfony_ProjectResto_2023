@@ -1,0 +1,12 @@
+{
+    "prix_commande": 50,
+    "statut_commande" : "prise",
+    "table_commande_id": {
+        "id": 1
+    },
+    "serveur_id": {
+        "id" : 39
+    },
+    "client": "titi"
+}
+//yarn encore dev --watch

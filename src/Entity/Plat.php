@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
+
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PlatRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlatRepository::class)]
+#[ApiResource]
 class Plat
 {
     #[ORM\Id]
@@ -18,41 +22,39 @@ class Plat
     #[ORM\Column(length: 255)]
     private ?string $Name = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Calories = null;
+    #[ORM\Column]
+    private ?int $Calories = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Price = null;
+    #[ORM\Column]
+    private ?float $Price = null;
 
     #[ORM\Column(length: 255)]
     private ?string $Image = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $Description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'plats')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Category $CategoryId = null;
+    #[ORM\Column]
+    private ?bool $Sticky = null;
 
     #[ORM\ManyToOne(inversedBy: 'plats')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $UserId = null;
+    private ?Category $Category = null;
 
-    #[ORM\OneToMany(mappedBy: 'PlatId', targetEntity: MenuPlat::class)]
-    private Collection $menuPlats;
+    #[ORM\ManyToOne(inversedBy: 'plats')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $User = null;
 
-    #[ORM\ManyToMany(targetEntity: Allergen::class)]
+    #[ORM\ManyToMany(targetEntity: Allergen::class, inversedBy: 'plats')]
     private Collection $allergens;
 
-    #[ORM\ManyToOne(inversedBy: 'plats')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Allergen $allergen = null;
+    #[ORM\ManyToMany(targetEntity: ClientOrder::class, mappedBy: 'Plats')]
+    private Collection $clientOrders;
 
     public function __construct()
     {
-        $this->menuPlats = new ArrayCollection();
-        $this->allergenPlats = new ArrayCollection();
         $this->allergens = new ArrayCollection();
+        $this->clientOrders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -72,24 +74,24 @@ class Plat
         return $this;
     }
 
-    public function getCalories(): ?string
+    public function getCalories(): ?int
     {
         return $this->Calories;
     }
 
-    public function setCalories(string $Calories): self
+    public function setCalories(int $Calories): self
     {
         $this->Calories = $Calories;
 
         return $this;
     }
 
-    public function getPrice(): ?string
+    public function getPrice(): ?float
     {
         return $this->Price;
     }
 
-    public function setPrice(string $Price): self
+    public function setPrice(float $Price): self
     {
         $this->Price = $Price;
 
@@ -120,55 +122,46 @@ class Plat
         return $this;
     }
 
-    public function getCategoryId(): ?Category
+    public function isSticky(): ?bool
     {
-        return $this->CategoryId;
+        return $this->Sticky;
     }
 
-    public function setCategoryId(?Category $CategoryId): self
+    public function setSticky(bool $Sticky): self
     {
-        $this->CategoryId = $CategoryId;
+        $this->Sticky = $Sticky;
 
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getCategory(): ?Category
     {
-        return $this->UserId;
+        return $this->Category;
     }
 
-    public function setUserId(User $UserId): self
+    public function setCategory(?Category $Category): self
     {
-        $this->UserId = $UserId;
+        $this->Category = $Category;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, MenuPlat>
-     */
-    public function getMenuPlats(): Collection
+    public function getUser(): ?User
     {
-        return $this->menuPlats;
+        return $this->User;
     }
 
-    public function addMenuPlat(MenuPlat $menuPlat): self
+    public function setUser(?User $User): self
     {
-        if (!$this->menuPlats->contains($menuPlat)) {
-            $this->menuPlats->add($menuPlat);
-            $menuPlat->setPlatId($this);
-        }
+        $this->User = $User;
 
         return $this;
     }
 
-    public function removeMenuPlat(MenuPlat $menuPlat): self
+    public function addUser(User $User): self
     {
-        if ($this->menuPlats->removeElement($menuPlat)) {
-            // set the owning side to null (unless already changed)
-            if ($menuPlat->getPlatId() === $this) {
-                $menuPlat->setPlatId(null);
-            }
+        if (!$this->User->contains($User)) {
+            $this->allergens->add($allergen);
         }
 
         return $this;
@@ -197,21 +190,35 @@ class Plat
 
         return $this;
     }
-
-    public function getAllergen(): ?Allergen
+    public function __toString(): string
     {
-        return $this->allergen;
+        return $this->Name;
     }
 
-    public function setAllergen(?Allergen $allergen): self
+    /**
+     * @return Collection<int, ClientOrder>
+     */
+    public function getClientOrders(): Collection
     {
-        $this->allergen = $allergen;
+        return $this->clientOrders;
+    }
+
+    public function addClientOrder(ClientOrder $clientOrder): self
+    {
+        if (!$this->clientOrders->contains($clientOrder)) {
+            $this->clientOrders->add($clientOrder);
+            $clientOrder->addPlat($this);
+        }
 
         return $this;
     }
 
-    public function __toString(): string
+    public function removeClientOrder(ClientOrder $clientOrder): self
     {
-        return $this->allergens;
+        if ($this->clientOrders->removeElement($clientOrder)) {
+            $clientOrder->removePlat($this);
+        }
+
+        return $this;
     }
 }

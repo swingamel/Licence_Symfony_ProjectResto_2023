@@ -1,6 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FrontController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
+        <div class="day-team-block">
+            <h3>Équipe du jour pour le {{day_team.date }}</h3>
+            <ul>
+                <h5>Midi : </h5>
+                {% for user in day_team.midi %}
+                    <li>{{ user.firstname }} {{ user.lastname }}</li>
+                {% endfor %}
+                <h5>Soir :</h5>
+                {% for user in day_team.soir %}
+                    <li>{{ user.firstname }} {{ user.lastname }}</li>
+                {% endfor %}
+            </ul>
+        </div>
 {% endblock %}

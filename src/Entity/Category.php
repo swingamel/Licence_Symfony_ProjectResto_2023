@@ -6,8 +6,10 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[ApiResource]
 class Category
 {
     #[ORM\Id]
@@ -21,7 +23,7 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $Image = null;
 
-    #[ORM\OneToMany(mappedBy: 'CategoryId', targetEntity: Plat::class)]
+    #[ORM\OneToMany(mappedBy: 'Category', targetEntity: Plat::class)]
     private Collection $plats;
 
     public function __construct()
@@ -70,7 +72,7 @@ class Category
     {
         if (!$this->plats->contains($plat)) {
             $this->plats->add($plat);
-            $plat->setCategoryId($this);
+            $plat->setCategory($this);
         }
 
         return $this;
@@ -80,16 +82,15 @@ class Category
     {
         if ($this->plats->removeElement($plat)) {
             // set the owning side to null (unless already changed)
-            if ($plat->getCategoryId() === $this) {
-                $plat->setCategoryId(null);
+            if ($plat->getCategory() === $this) {
+                $plat->setCategory(null);
             }
         }
 
         return $this;
     }
-
     public function __toString(): string
     {
-        return $this->plats;
+        return $this->Name;
     }
 }

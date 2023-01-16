@@ -1,0 +1,8 @@
+{% include 'admin/admin.html.twig' %}
+
+{% block body %}
+    {% block content %}
+        <h1>Ajouter un plat</h1>
+    {{ include('plat/_form.html.twig') }}
+    {% endblock %}
+{% endblock %}

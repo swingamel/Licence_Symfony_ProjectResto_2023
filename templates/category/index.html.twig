@@ -1,0 +1,59 @@
+{% include 'admin/admin.html.twig' %}
+
+{% block body %}
+    {% block content %}
+    <h1>Category index</h1>
+
+    <table class="table">
+        <thead>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('edit') %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('delete') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th colspan="3" rowspan="3">Choix</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.Name }}</td>
+                <td><img src="{{ category.Image }}" width="100px"></td>
+                <td>
+                    <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-warning">Modifier</a>
+                </td>
+                <td>
+                    <form method="post" action="{{ path('app_category_delete', {'id': category.id}) }}"
+                          onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
+                        <button class="btn btn-danger">
+                            Supprimer
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <a href="{{ path('app_category_show', {'id': category.id}) }}" class="btn btn-info">Détail</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+{% endblock %}

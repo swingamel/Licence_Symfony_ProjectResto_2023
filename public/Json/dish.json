@@ -1,64 +1,125 @@
 {
-  "desserts": [
+  "dessert": [
     {
-      "name": "Donut",
-      "calories": 452,
-      "description": "A fried cake of yeast-leavened dough",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Donut.jpg/800px-Donut.jpg",
-      "price": 1.99,
-      "user_id": 1,
-      "allergens": "eggs"
-    },
-    {
-      "name": "Cookie",
-      "calories": 237,
-      "description": "A small cake",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cookies_in_a_jar.jpg/800px-Cookies_in_a_jar.jpg",
-      "price": 0.99,
-      "user_id": 1,
-      "allergens": "eggs"
-    },
-    {
-      "name": "Ice Cream",
+      "name": "Eclair",
+      "description": "A pastry made of choux dough filled with cream and topped with chocolate icing.",
       "calories": 262,
-      "description": "A frozen dessert usually made from dairy products, such as milk and cream, and often combined with fruits or other ingredients and flavours.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Two-scoops-of-ice-cream.jpg/800px-Two-scoops-of-ice-cream.jpg",
-      "price": 1.99,
-      "user_id": 1,
-      "allergens": "milk"
-    },
-    {
-      "name": "Cake",
-      "calories": 356,
-      "description": "A sweet dessert of flour, sugar, and other ingredients, that is usually baked.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Cake_-_Dresden_-_20160428.jpg/800px-Cake_-_Dresden_-_20160428.jpg",
-      "price": 2.99,
-      "user_id": 1,
-      "allergens": "eggs"
-    },
-    {
-      "name": "Pie",
-      "calories": 231,
-      "description": "A baked dish which is usually made of a pastry dough casing that covers or completely contains a filling of various sweet or savoury ingredients.",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Apple_Pie.jpg/800px-Apple_Pie.jpg",
-      "price": 1.99,
-      "user_id": 1,
-      "allergens": "eggs"
-    }
-  ],
-  "plats": [
-    {
-      "name": "Poulet",
-      "calories": "This is a text",
-      "description": "This is a text",
-      "image": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+      "image": "https://mapatisserie.fr/wp-content/uploads/2021/09/eclair-chocolat-P1080408-03-275x275.jpeg",
+      "price": 2.95,
       "sticky": true,
-      "user_id": 1,
-      "price": 1.99,
       "allergens": [
         "gluten",
-        "nuts"
-      ]
+        "dairy"
+      ],
+      "users": "mel"
+    },
+    {
+      "name": "Cupcake",
+      "description": "A small cake designed to serve one person, which may be baked in a small thin paper or aluminum cup.",
+      "calories": 305,
+      "image": "https://assets.afcdn.com/recipe/20131116/33422_w1024h1024c1cx320cy480.webp",
+      "price": 1.95,
+      "sticky": false,
+      "allergens": [
+        "gluten",
+        "dairy"
+      ],
+      "users": "mel"
+    },
+    {
+      "name": "Jelly bean",
+      "description": "A jelly bean is a small, spherical candy. It is almost always gelatin-based, with a soft but not runny consistency.",
+      "calories": 375,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/JellyBellyBeans.jpg/1200px-JellyBellyBeans.jpg",
+      "price": 0.95,
+      "sticky": false,
+      "allergens": [
+        "gluten",
+        "dairy"
+      ],
+      "users": "mel"
+    }
+  ],
+  "plat": [
+    {
+      "name": "Poulet au curry",
+      "description": "Poulet au curry avec riz basmati.",
+      "calories": 1000,
+      "image": "https://cdn.chefclub.tools/uploads/recipes/cover-thumbnail/f287b191-dc8e-4c85-bbb6-e26387c354d3.jpg",
+      "price": 10.9,
+      "sticky": false,
+      "allergens": [
+        "gluten",
+        "dairy"
+      ],
+      "users": "mel"
+    },
+    {
+      "name": "Burger",
+      "description": "Burger avec frites.",
+      "calories": 1000,
+      "image": "https://www.lesepicesrient.fr/wp-content/uploads/2022/05/burger-barbecue-miel-01.jpg",
+      "price": 10.9,
+      "sticky": false,
+      "allergens": [
+        "gluten",
+        "dairy"
+      ],
+      "users": "mel"
+    },
+    {
+      "name": "Pizza",
+      "description": "Pizza avec salade.",
+      "calories": 1000,
+      "image": "https://img.cuisineaz.com/660x660/2016/06/20/i83891-pizza-jambon-gruyere-et-olives.jpg",
+      "price": 10.9,
+      "sticky": false,
+      "allergens": [
+        "gluten",
+        "dairy"
+      ],
+      "users": "mel"
+    }
+  ],
+  "entrees": [
+    {
+      "name": "Foie gras",
+      "description": "Foie gras de canard avec confit de figues.",
+      "calories": 1000,
+      "image": "https://www.valette.fr/7152-thickbox_default/le-bloc-de-foie-gras-d-oie.jpg",
+      "price": 10.9,
+      "sticky": false,
+      "allergens": [
+        "gluten",
+        "dairy"
+      ],
+      "users": "mel"
+    },
+    {
+      "name": "Salade",
+      "description": "Salade verte avec tomates cerises.",
+      "calories": 1000,
+      "image": "https://img.passeportsante.net/1200x675/2021-03-02/i100060-salade-de-laitue-concombres-et-tomates.webp",
+      "price": 10.9,
+      "sticky": false,
+      "allergens": [
+        "gluten",
+        "dairy"
+      ],
+      "users": "mel"
+    },
+    {
+      "name": "Soupe",
+      "description": "Soupe de légumes.",
+      "calories": 1000,
+      "image": "https://img-3.journaldesfemmes.fr/UugqFkGLEOJ0HQBv9PYqqG6typ4=/1500x/smart/f6f16cf7b4ac4cc3bcbc3f8f7eb337e2/ccmcms-jdf/19203394.jpg",
+      "price": 10.9,
+      "sticky": false,
+      "allergens": [
+        "gluten",
+        "dairy"
+      ],
+      "users": "mel"
     }
   ]
 }

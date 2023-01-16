@@ -1,0 +1,50 @@
+{% include 'admin/admin.html.twig' %}
+
+{% block body %}
+    {% block content %}
+    <h1>Détail de l'utilisateur n°{{ user.id }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id de l'utilisateur</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Username de l'utilisateur</th>
+                <td>{{ user.Username }}</td>
+            </tr>
+            <tr>
+                <th>Email de l'utilisateur</th>
+                <td>{{ user.Email }}</td>
+            </tr>
+            <tr>
+                <th>Prénom de l'utilisateur</th>
+                <td>{{ user.Firstame }}</td>
+            </tr>
+            <tr>
+                <th>Nom de l'utilisateur</th>
+                <td>{{ user.Lastname }}</td>
+            </tr>
+            <tr>
+                <th>Intitulé du poste de l'utilisateur</th>
+                <td>{{ user.JobTitle }}</td>
+            </tr>
+            <tr>
+                <th>Utilisateur actif ?</th>
+                <td>{{ user.Enabled ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Date de création</th>
+                <td>{{ user.CreatedAt ? user.CreatedAt|date('d-m-Y-H-i-s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date de modification</th>
+                <td>{{ user.UpdatedAt ? user.UpdatedAt|date('d-m-Y-H-i-s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_index') }}" class="btn btn-info">Retour</a>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,73 @@
+<div class="form-group">
+    {{ form_start(form) }}
+    <table class="table" style="width: 50%;position:relative; left:400px">
+        <thead>
+        <tr>
+            <td>
+                {{ form_label(form.Name, 'Nom du plat :' ) }}
+                {{ form_widget(form.Name, {'attr':{'class':'form-control', 'placeholder' : 'Entrez le nom du plat', required : true}}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.Description, 'Description du plat :' ) }}
+                {{ form_widget(form.Description, {'attr':{'class':'form-control', required : true}}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.Calories, 'Nombre de calories :' ) }}
+                {{ form_widget(form.Calories, {'attr':{'class':'form-control', 'placeholder' : 'Entrez le nombre de calories' }}
+                ) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.Price, 'Prix du plat :' ) }}
+                {{ form_widget(form.Price, {'attr':{'class':'form-control', 'placeholder' : 'Entrez le prix', required : true}}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.Image, 'Image du plat:' ) }}
+                {{ form_widget(form.Image, {'attr':{'class':'form-control' }}
+                ) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.User, 'Utilisateur :' ) }}
+                {{ form_widget(form.User, {'attr':{'class':'form-control', 'placeholder' : 'Selectionnez l\'utilisateur' }}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.allergens, 'Les allergens :' ) }}
+                {{ form_widget(form.allergens, {'attr':{'class':'form-control', 'placeholder' : 'Selectionnez les allergens' }}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.Category, 'Catégorie de plat :' ) }}
+                {{ form_widget(form.Category, {'attr':{'class':'form-control', required : true, 'placeholder' : 'Selectionnez la catégorie' }}) }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form_label(form.Sticky, 'Plat gluant ?' ) }}
+                {{ form_widget(form.Sticky, {'attr':{'class':'form-control' }}
+                ) }}
+            </td>
+        </tr>
+        </thead>
+    </table>
+    <div style="text-align: center"><button class="btn btn-success">
+            {{ button_label|default('Ajouter un plat !') }}
+        </button>
+        <a type="button" class="btn btn-danger" href="{{ path('app_plat_index') }}">
+            Annuler
+        </a>
+    </div>
+</div>
+<br>
+{{ form_end(form) }}

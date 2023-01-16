@@ -1,0 +1,22 @@
+{% include 'admin/admin.html.twig' %}
+
+{% block body %}
+    {% block content %}
+    <h1>Détail de l'allergen n°{{ allergen.id }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id de l'allergen</th>
+                <td>{{ allergen.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom de l'allergen</th>
+                <td>{{ allergen.Name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_allergen_index') }}" class="btn btn-info">Retour</a>
+    {% endblock %}
+{% endblock %}

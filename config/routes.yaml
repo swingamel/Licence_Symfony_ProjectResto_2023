@@ -1,3 +1,28 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+
+dish_list:
+    path: /api/v1/dishes
+    controller: App\Controller\PlatAPIController::listPlatAPI
+    methods: [GET]
+
+order_create:
+    path: //api/v1/order
+    controller: App\Controller\PlatAPIController::createOrderAPI
+    methods: [POST]
+
+order_update:
+    path: /api/v1/order/{id}
+    controller: App\Controller\PlatAPIController::updateOrderAPI
+    methods: [PUT]
+
+order_list:
+    path: /api/v1/orders/list
+    controller: App\Controller\PlatAPIController::listOrdersAPI
+    methods: [GET]
+
+restaurant_todayTeam:
+    path: /api/v1/restaurant/today-team
+    controller: App\Controller\PlatAPIController::getTodayTeamAPI
+    methods: [GET]

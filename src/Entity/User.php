@@ -2,14 +2,21 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
+#[UniqueEntity('Username')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+#[UniqueEntity(fields: ['Username'], message: 'There is already an account with this Username')]
+#[ApiResource]
+class User implements PasswordAuthenticatedUserInterface, UserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,16 +30,10 @@ class User
     private ?string $Email = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $FirstName = null;
+    private ?string $Firstame = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $LastName = null;
-
-    #[ORM\OneToMany(mappedBy: 'UserId', targetEntity: Plat::class)]
-    private Collection $plats;
-
-    #[ORM\OneToMany(mappedBy: 'UserId', targetEntity: Menu::class)]
-    private Collection $menus;
+    private ?string $Lastname = null;
 
     #[ORM\Column(length: 255)]
     private ?string $JobTitle = null;
@@ -46,10 +47,26 @@ class User
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $UpdatedAt = null;
 
+    #[ORM\OneToMany(mappedBy: 'User', targetEntity: Plat::class)]
+    private Collection $plats;
+
+    #[ORM\Column(type: "json")]
+    private array $roles = [];
+
+    # @var string The hashed password
+    #[ORM\Column(length: 255)]
+    private ?string $password = null;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
+
+    #[ORM\OneToMany(mappedBy: 'Serveur', targetEntity: ClientOrder::class)]
+    private Collection $clientOrders;
+
     public function __construct()
     {
         $this->plats = new ArrayCollection();
-        $this->menus = new ArrayCollection();
+        $this->clientOrders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,86 +98,26 @@ class User
         return $this;
     }
 
-    public function getFirstName(): ?string
+    public function getFirstame(): ?string
     {
-        return $this->FirstName;
+        return $this->Firstame;
     }
 
-    public function setFirstName(string $FirstName): self
+    public function setFirstame(string $Firstame): self
     {
-        $this->FirstName = $FirstName;
+        $this->Firstame = $Firstame;
 
         return $this;
     }
 
-    public function getLastName(): ?string
+    public function getLastname(): ?string
     {
-        return $this->LastName;
+        return $this->Lastname;
     }
 
-    public function setLastName(string $LastName): self
+    public function setLastname(string $Lastname): self
     {
-        $this->LastName = $LastName;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Plat>
-     */
-    public function getPlats(): Collection
-    {
-        return $this->plats;
-    }
-
-    public function addPlat(Plat $plat): self
-    {
-        if (!$this->plats->contains($plat)) {
-            $this->plats->add($plat);
-            $plat->setUserId($this);
-        }
-
-        return $this;
-    }
-
-    public function removePlat(Plat $plat): self
-    {
-        if ($this->plats->removeElement($plat)) {
-            // set the owning side to null (unless already changed)
-            if ($plat->getUserId() === $this) {
-                $plat->setUserId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Menu>
-     */
-    public function getMenus(): Collection
-    {
-        return $this->menus;
-    }
-
-    public function addMenu(Menu $menu): self
-    {
-        if (!$this->menus->contains($menu)) {
-            $this->menus->add($menu);
-            $menu->setUserId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMenu(Menu $menu): self
-    {
-        if ($this->menus->removeElement($menu)) {
-            // set the owning side to null (unless already changed)
-            if ($menu->getUserId() === $this) {
-                $menu->setUserId(null);
-            }
-        }
+        $this->Lastname = $Lastname;
 
         return $this;
     }
@@ -213,8 +170,123 @@ class User
         return $this;
     }
 
-    public function __toString(): string
+    /**
+     * @return Collection<int, Plat>
+     */
+    public function getPlats(): Collection
     {
         return $this->plats;
+    }
+
+    public function addPlat(Plat $plat): self
+    {
+        if (!$this->plats->contains($plat)) {
+            $this->plats->add($plat);
+            $plat->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlat(Plat $plat): self
+    {
+        if ($this->plats->removeElement($plat)) {
+            // set the owning side to null (unless already changed)
+            if ($plat->getUser() === $this) {
+                $plat->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->Username;
+    }
+
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return (string)$this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getSalt()
+    {
+        // not needed when using the "bcrypt" algorithm in security.yaml
+    }
+
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return (string)$this->Username;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ClientOrder>
+     */
+    public function getClientOrders(): Collection
+    {
+        return $this->clientOrders;
+    }
+
+    public function addClientOrder(ClientOrder $clientOrder): self
+    {
+        if (!$this->clientOrders->contains($clientOrder)) {
+            $this->clientOrders->add($clientOrder);
+            $clientOrder->setServeur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClientOrder(ClientOrder $clientOrder): self
+    {
+        if ($this->clientOrders->removeElement($clientOrder)) {
+            // set the owning side to null (unless already changed)
+            if ($clientOrder->getServeur() === $this) {
+                $clientOrder->setServeur(null);
+            }
+        }
+
+        return $this;
     }
 }
