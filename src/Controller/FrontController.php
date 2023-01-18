@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\ClientOrder;
 use App\Form\ClientOrderType;
 use App\Repository\CategoryRepository;
-use App\Repository\ClientOrderRepository;
+use App\Repository\UserRepository;
 use App\Services\RHService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,7 +39,7 @@ class FrontController extends AbstractController
     }
 
     #[Route('/equipe', name: 'front_team', methods: ['GET'])]
-    public function equipe(ClientOrderRepository $userRepository): Response
+    public function equipe(UserRepository $userRepository): Response
     {
         return $this->render('front/equipe.html.twig', [
             'users' => $userRepository->findAll(),
