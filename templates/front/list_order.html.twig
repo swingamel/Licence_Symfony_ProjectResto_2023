@@ -3,29 +3,25 @@
 {% block title %}ClientOrder index{% endblock %}
 
 {% block body %}
-    <h1>ClientOrder index</h1>
+    <h1>Liste des commandes</h1>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>DateheureCommande</th>
-            <th>PrixCommmande</th>
-            <th>StatutCommande</th>
-            <th>Détail</th>
+            <th>Date et heure de la commande</th>
+            <th>Prix de la commmande</th>
+            <th>Statut de la commande</th>
+            <th>Détail de la commande</th>
         </tr>
         </thead>
         <tbody>
         {% for client_order in client_orders %}
             <tr>
-                <td>{{ client_order.id }}</td>
                 <td>{{ client_order.dateheureCommande ? client_order.dateheureCommande|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ client_order.prixCommmande|number_format(2, ',', ' ') }} €</td>
+                <td>{{ client_order.prixCommmande|number_format(2, ',', ' ') }}€</td>
                 <td>{{ client_order.statutCommande }}</td>
-                {#détail des plats#}
-
                 <td>
-                    <a href="{{ path('app_order_show', {'id': client_order.id}) }}">show</a>
+                    <a href="{{ path('app_order_show', {'id': client_order.id}) }}" class="btn btn-primary">Détail</a>
                 </td>
             </tr>
         {% else %}

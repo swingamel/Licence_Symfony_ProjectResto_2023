@@ -5,6 +5,10 @@ namespace App\Controller;
 use App\Entity\ClientOrder;
 use App\Form\ClientOrderType;
 use App\Repository\CategoryRepository;
+<<<<<<< HEAD
+=======
+use App\Repository\ClientOrderRepository;
+>>>>>>> f58674f (maj project)
 use App\Repository\UserRepository;
 use App\Services\RHService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -69,7 +73,7 @@ class FrontController extends AbstractController
     {
         $category = $request->get('category');
         if (!$category) {
-            throw $this->createNotFoundException('La catégorie n\'existe pas');
+            throw $this->createNotFoundException('La catégorie n°' . $request->get('id') . ' n\'existe pas');
         }
         return $this->render('front/show.html.twig', [
             'category' => $category,
@@ -86,7 +90,7 @@ class FrontController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $clientOrderRepository->save($clientOrder, true);
 
-            return $this->redirectToRoute('homepage', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_client_order_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('front/support.html.twig', [

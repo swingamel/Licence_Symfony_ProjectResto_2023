@@ -27,10 +27,18 @@ class PlatController extends AbstractController
         $form = $this->createForm(PlatType::class, $plat);
         $form->handleRequest($request);
 
-        if ($plat->getImage() == null || $plat->getImage() == '') {
-            $plat->setImage('http://via.placeholder.com/360x225');
-        }
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('Image')->getData();
+            if ($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $fileName
+                );
+                $plat->setImage($fileName);
+            } else {
+                $plat->setImage('http://via.placeholder.com/360x225');
+            }
             $platRepository->save($plat, true);
 
             $this->addFlash('success', 'Le plat ' . $plat->getName() . ' a bien été ajouté');
@@ -43,13 +51,13 @@ class PlatController extends AbstractController
         ]);
     }
 
-/*    #[Route('/{id}', name: 'app_plat_show', methods: ['GET'])]
+    #[Route('admin/dish/{id}', name: 'app_plat_show', methods: ['GET'])]
     public function show(Plat $plat): Response
     {
         return $this->render('plat/show.html.twig', [
             'plat' => $plat,
         ]);
-    }*/
+    }
 
     #[Route('admin/dish/{id}/edit', name: 'app_plat_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Plat $plat, PlatRepository $platRepository): Response

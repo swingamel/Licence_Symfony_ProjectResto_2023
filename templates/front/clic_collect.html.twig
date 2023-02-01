@@ -12,37 +12,37 @@
                 <tr>
                     <td>
                         {{ form_label(form.dateheureCommande, 'Date et heure de la commande') }}
-                        {{ form_widget(form.dateheureCommande, {'attr': {'id': 'dateheureCommande'}}) }}
+                        {{ form_widget(form.dateheureCommande, {'attr': {'id': 'dateheureCommande'}}, {'attr': {'class': 'form-control'}}) }}
                     </td>
                 </tr>
                 <tr>
                     <td>
                         {{ form_label(form.statutCommande, 'Statut de la commande') }}
-                        {{ form_widget(form.statutCommande) }}
+                        {{ form_widget(form.statutCommande, {'attr': {'class': 'form-control'}}) }}
                     </td>
                 </tr>
                 <tr>
                     <td>
                         {{ form_label(form.tableCommande, 'Table de la commande') }}
-                        {{ form_widget(form.tableCommande) }}
+                        {{ form_widget(form.tableCommande, {'attr': {'class': 'form-control'}}) }}
                     </td>
                 </tr>
                 <tr>
                     <td>
                         {{ form_label(form.Plats, 'Plats de la commande') }}
-                        {{ form_widget(form.Plats) }}
+                        {{ form_widget(form.Plats, {'attr': {'class': 'form-control'}}) }}
                     </td>
                 </tr>
                 <tr>
                     <td>
                         {{ form_label(form.Serveur, 'Serveur de la commande') }}
-                        {{ form_widget(form.Serveur) }}
+                        {{ form_widget(form.Serveur, {'attr': {'class': 'form-control'}}) }}
                     </td>
                 </tr>
                 <tr>
                     <td>
                         {{ form_label(form.Client, 'Client de la commande') }}
-                        {{ form_widget(form.Client) }}
+                        {{ form_widget(form.Client, {'attr': {'class': 'form-control'}}) }}
                     </td>
                 </thead>
             </table>

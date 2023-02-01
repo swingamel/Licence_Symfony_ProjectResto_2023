@@ -18,16 +18,13 @@ class PlatRepository extends ServiceEntityRepository
 {
     public function findStickies($category, $limit)
     {
-        $qb = $this->createQueryBuilder('p');
-
-        $qb
+        return $this->createQueryBuilder('p')
             ->where('p.Category = :category')
-            ->andWhere('p.Sticky = true')
+            ->andWhere('p.Sticky = 1')
             ->setParameter('category', $category)
             ->setMaxResults($limit)
-        ;
-
-        return $qb->getQuery()->getResult();
+            ->getQuery()
+            ->getResult();
     }
 
     public function __construct(ManagerRegistry $registry)
