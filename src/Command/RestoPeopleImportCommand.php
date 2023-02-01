@@ -15,7 +15,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
     name: 'resto:people:import',
-    description: 'Add a short description for your command',
+    description: 'Importer le peronnel du resto extérieur',
 )]
 class RestoPeopleImportCommand extends Command
 {
@@ -62,7 +62,6 @@ class RestoPeopleImportCommand extends Command
             $user->setEnabled(true);
             $user->setCreatedAt(new \DateTime());
             $user->setUpdatedAt(new \DateTime());
-            //haché le password
             $user->setPassword(password_hash($person['firstname'], PASSWORD_BCRYPT));
             $this->entityManager->persist($user);
         }

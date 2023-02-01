@@ -30,6 +30,7 @@
         <tr>
             <td>
                 {{ form_label(form.Image, 'Image du plat:' ) }}
+                {{ form_errors(form.Image) }}
                 {{ form_widget(form.Image, {'attr':{'class':'form-control' }}
                 ) }}
             </td>

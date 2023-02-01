@@ -40,8 +40,6 @@ class PlatAPIController extends AbstractController
         return new JsonResponse($data);
     }
 
-    //création d'une commande
-
     /**
      * @Route("/api/v1/order", name="order_create", methods={"POST"})
      * @throws NonUniqueResultException
@@ -70,8 +68,6 @@ class PlatAPIController extends AbstractController
         $em->flush();
         return new JsonResponse(['status' => 'Plat created!'], 201);
     }
-
-    //modification d'une commande
 
     /**
      * @Route("/api/v1/order/{id}", name="order_update", methods={"PUT"})
@@ -106,8 +102,6 @@ class PlatAPIController extends AbstractController
         $em->flush();
         return new JsonResponse(['status' => 'Plat updated!'], 201);
     }
-
-    //Récupérer la liste des commandes en cours, avec leur état
 
     /**
      * @Route("/api/v1/orders/list", name="orders_list", methods={"GET"})
